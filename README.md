@@ -1,5 +1,4 @@
-# ford_fusion_fiesta_ms_can
-MS-can bus emulator.
+# MS-can bus emulator
 
 **Used devices**:
 - arduino pro mini
