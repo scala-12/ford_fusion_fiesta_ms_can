@@ -28,7 +28,7 @@ void setup() {
   can_msg.data[7] = 0x00;
 }
 
-void send_arrows_status() {
+void sendArrowsStatus() {
   can_msg.can_id  = 0x265;
   bool has_right_arrow = digitalRead(A0) == LOW;
   bool has_left_arrow = digitalRead(A2) == LOW;
@@ -48,7 +48,7 @@ void send_arrows_status() {
   mcp2515.sendMessage(&can_msg);
 }
 
-void send_airbag_status() {
+void sendAirbagStatus() {
   can_msg.can_id  = 0x460;
   can_msg.data[0] = 0x0;
   can_msg.data[1] = 0x0;
@@ -61,7 +61,7 @@ void send_airbag_status() {
   mcp2515.sendMessage(&can_msg);
 }
 
-void send_doors_status() {
+void sendDoorsStatus() {
   if (digitalRead(A3) != LOW) {
     can_msg.can_id  = 0x433;
     can_msg.data[0] = 0x80;
@@ -72,7 +72,7 @@ void send_doors_status() {
 }
 
 void loop() {
-  send_arrows_status();
-  send_airbag_status();
-  send_doors_status();
+  sendArrowsStatus();
+  sendAirbagStatus();
+  sendDoorsStatus();
 }
