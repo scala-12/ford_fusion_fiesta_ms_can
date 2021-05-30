@@ -62,13 +62,15 @@ void sendAirbagStatus() {
 }
 
 void sendDoorsStatus() {
+  can_msg.can_id  = 0x433;
+  can_msg.data[2] = 0x00;
+  can_msg.data[4] = 0x20;
   if (digitalRead(A3) != LOW) {
-    can_msg.can_id  = 0x433;
     can_msg.data[0] = 0x80;
-    can_msg.data[2] = 0x00;
-    can_msg.data[4] = 0x20;
-    mcp2515.sendMessage(&can_msg);
+  } else {
+    can_msg.data[0] = 0x00;
   }
+  mcp2515.sendMessage(&can_msg);
 }
 
 void loop() {
